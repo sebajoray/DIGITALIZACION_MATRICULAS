@@ -40,7 +40,7 @@ for imagenes in ficheros:
     imgtext = Image.open(filename)
 
     # limpio el codigo de caracteres que no corresponden
-    texto1 = pytesseract.image_to_string(imgtext, lang='typewriter', config=f'--psm 6')
+    texto1 = pytesseract.image_to_string(imgtext, lang='esp', config=f'--psm 6')
     print(texto1)
     es.index(
         index='matriculas',
