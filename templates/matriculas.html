@@ -6,6 +6,9 @@
         <button>Enviar</button> </h2>
     </form>
     {% for doc in result %}
-    <a href="C:{{doc['_source']['path']+'/'+doc['_source']['imagen']}}">{{doc['_source']['imagen']}}</a>
+    <br>
+    <a href="/static/imagen2/{{doc}}">
+    <image scr="{{url_for('static', filename = 'imagen2/'+doc)}}" alt="{{doc}}">
+    </image></a>
     {% endfor %}
 </body>

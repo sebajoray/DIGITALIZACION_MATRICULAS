@@ -13,7 +13,7 @@ es = Elasticsearch('http://localhost:9200', basic_auth=('seba', 'gemin8'), verif
 cadena='cadena'
 @app.route("/")
 def home():
-   return render_template("index.html")
+   return render_template("index.php")
 
 @app.route("/matriculas", methods=["POST"])
 def matricula():
@@ -23,12 +23,24 @@ def matricula():
       query={'match': {'texto': cadena}}
   )
   all_hits =result['hits']['hits']
+  data = []
+
   for num, doc in enumerate(all_hits):
-    print (doc['_source']['path'])
-   
+    item=doc['_source']['imagen']
+    #item=doc['_source']['path']+'/'+doc['_source']['imagen']
+    data.append(item)
+    print (item)
     # print a few spaces between each doc for readability
     print ("\n\n")
-  return render_template("matriculas.html", result=all_hits)
+
+  lista=[]  
+  for item in data:
+    if item not in lista:
+        lista.append(item)
+  print(data)
+  print(lista)
+
+  return render_template("matriculas.html", result=lista)
 
 if __name__ == "__main__":
     print("Server running in port %s"%(PORT))
