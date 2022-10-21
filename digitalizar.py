@@ -6,7 +6,7 @@ import cv2
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # Abrimos la imagen
-img_cv = cv2.imread(r'1-1-1-1838-.tif')
+img_cv = cv2.imread(r'/Users/User/proyectos/digitalizacion_matriculas/imagenes/1-1-2-1771-2.tif')
 #cv2.threshold(img_cv, ) 
 
 # d = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)

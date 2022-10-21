@@ -29,7 +29,6 @@ def matricula():
     item=doc['_source']['imagen']
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
-    print (item)
     # print a few spaces between each doc for readability
     print ("\n\n")
 
@@ -37,10 +36,9 @@ def matricula():
   for item in data:
     if item not in lista:
         lista.append(item)
-  print(data)
-  print(lista)
+  print (result)
 
-  return render_template("matriculas.html", result=lista)
+  return render_template("matriculas.html", result=lista, cadena=cadena)
 
 if __name__ == "__main__":
     print("Server running in port %s"%(PORT))

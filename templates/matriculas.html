@@ -5,6 +5,8 @@
     <h2><input type="texto" name="cadena"></input>
         <button>Enviar</button> </h2>
     </form>
+    <br>
+    <h1 style='color:red'>Resultados para:{{cadena}}</h1>
     {% for doc in result %}
     <br>
     <a href="/static/imagen2/{{doc}}">

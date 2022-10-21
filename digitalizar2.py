@@ -5,18 +5,21 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
+from skimage import io
+import imagecodecs
 # Importamos la libreria Pillow
 # from PIL import Image
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
 #read your file
-file=r'felisarg2.tiff'
-img = cv2.imread(file,0)
+file=r'1-1-2-1771-2.tif'
+img = io.imread(file,0)
 
 file=r'linea.tif'
 img2 = cv2.imread(file,0)
 
+print(img)
 rows,cols = img.shape
 
 #thresholding the image to a binary image
