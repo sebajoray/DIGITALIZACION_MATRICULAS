@@ -1,11 +1,7 @@
 # Importamos Pytesseract
+import os
 import pytesseract
-import cv2
-import os
-from PIL import Image
 from elasticsearch import Elasticsearch
-import os
-os.environ["PATH"] += os.pathsep + "C:\\Program Files\\GnuWin32\\bin"
 from skimage import io
 
 
@@ -18,7 +14,7 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 # Abrimos la imagen
 path='/Users/User/proyectos/digitalizacion_matriculas/imagenes/imagen2'
 with os.scandir(path) as ficheros:
-    ficheros = [fichero.name for fichero in ficheros if fichero.is_file() and fichero.name.endswith('.tif')]
+    ficheros = [fichero.name for fichero in ficheros if fichero.is_file() and fichero.name.endswith('.jpeg')]
 
 nonombres=['COPROPIEDAD', 'DECRETO', 'LEY','DECRETOLEY','BAHIA', 'LOTE', 'TERRENO', 'FEDERAL','ANTECEDENTE', 'PLANO',
 'CANCELACIONES','DPTO','MINISTERIO','HACIENDA','SIGUE','REGISTRO','PROVINCIA','RESTRICCIONES',
@@ -43,7 +39,7 @@ for imagenes in ficheros:
     print(texto1)
     texto = texto1.split('Titularidad')
     if len(texto) > 1:
-      print('Texto:',texto[1])    
+        print('Texto:',texto[1])    
     
 
     """es.index(
