@@ -7,7 +7,6 @@ from elasticsearch import Elasticsearch
 from pathlib import Path
 from skimage import io
 import aspose.words as aw
-from PIL import Image
 
 
 es = Elasticsearch('http://localhost:9200', basic_auth=('seba', 'gemin8'), verify_certs=False)
@@ -25,21 +24,13 @@ for ruta, directorios, ficheros in os.walk(path):
     doc = aw.Document()
     builder = aw.DocumentBuilder(doc)
     for fichero in ficheros:
-
         lista.append([ruta, fichero])
-        img = io.imread(os.path.join(ruta, fichero))
-        io.imsave(os.path.join(ruta, fichero)+".jpg", img)
- #       builder.insert_image(os.path.join(ruta, fichero)+".jpg")
-        # Insert a paragraph break to avoid overlapping images.
- #       builder.writeln()
-#        imgs.append(os.path.join(ruta, fichero)+".jpg")
-    print('imagenes:', imgs)
-    print('ficheros:', ficheros)
-    if lista:
-#        doc.save(ruta+".pdf")
-        with open(ruta+"salida.pdf", "wb") as documento:
-    	    documento.write(img2pdf.convert(imgs))
-            #img = io.imread("1-1-1-1836-.tif")
+        builder.insert_image(ruta+"\\"+fichero)
+        builder.writeln()
+    doc.save("Output.pdf")
+#    if imgs:
+#        with open("documento.pdf", "wb") as documento:
+#    	    documento.write(img2pdf.convert(imgs))
 nonombres=['COPROPIEDAD', 'DECRETO', 'LEY','DECRETOLEY','BAHIA', 'LOTE', 'TERRENO', 'FEDERAL','ANTECEDENTE', 'PLANO',
 'CANCELACIONES','DPTO','MINISTERIO','HACIENDA','SIGUE','REGISTRO','PROVINCIA','RESTRICCIONES',
 'EDIFICADO','UBICADO','CIUDAD','CALLE','APROBADO','SOBRE','DOMINIO','INTERDICCIONES','CANCELACIONES',
