@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Importamos Pytesseract
 import pytesseract
 import cv2
@@ -70,7 +69,6 @@ for par in lista:
     # limpio el codigo de caracteres que no corresponden
     texto1 = pytesseract.image_to_string(img, lang='font_name', config=f'--psm 6 --oem 1')
     print("-----------------------------------------------------------")
-    print(texto1)
     texto = texto1.split('Titularidad')
     if len(texto) > 1:
         texto1=texto[1]
@@ -78,13 +76,12 @@ for par in lista:
     es.index(
         index='matriculas',
         document={
-        'path': path,
-        'imagen': fichero,
+        'path': por[0],
+        'imagen': par[1],
         'texto' : texto1
 
     })
 
-=======
 # Importamos Pytesseract
 import pytesseract
 import cv2
@@ -141,16 +138,12 @@ for par in lista:
     texto = texto1.split('Titularidad')
     if len(texto) > 1:
       print('Texto:',texto[1])    
-    
-
-    """es.index(
-        index='matriculas',
-        document={
+   
+    es.index(
+    index='matriculas2',
+    document={
         'path': path,
         'imagen': imagenes,
         'texto' : texto1
-
-    })"""
-
->>>>>>> f2b65a17b6180d1c9eaab554aba840949dda63a9
+        })
 print (es.info())
