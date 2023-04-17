@@ -7,10 +7,10 @@
     </form>
     <br>
     <h1 style='color:rgb(189, 24, 24)'>Resultados para:{{cadena}}</h1>
-    {% for doc in result %}
+    {% for path in result %}
     <br>
-    <a href="/static/imagen2/{{doc}}">
-    <image scr="{{url_for('static', filename = 'imagen2/'+doc)}}" alt="{{doc}}">
-    </image></a>
+    <a href="c:{{path}}.pdf">{{path}}
+    <!--image scr="{{url_for('static', filename = path)}}" alt="{{path}}">
+    </image>--></a>
     {% endfor %}
 </body>
