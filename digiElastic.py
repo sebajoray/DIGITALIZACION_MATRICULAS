@@ -2,10 +2,12 @@
 import pytesseract
 import cv2
 import os
+from os import remove
 import img2pdf
 from elasticsearch import Elasticsearch
 from pathlib import Path
 from skimage import io
+import shutil
 import aspose.words as aw
 from PIL import Image
 
@@ -39,6 +41,9 @@ for ruta, directorios, ficheros in os.walk(path):
 #        doc.save(ruta+".pdf")
         with open(ruta+".pdf", "wb") as documento:
     	    documento.write(img2pdf.convert(imgs))
+        for g in imgs:
+            remove(g)
+        
             #img = io.imread("1-1-1-1836-.tif")
 nonombres=['COPROPIEDAD', 'DECRETO', 'LEY','DECRETOLEY','BAHIA', 'LOTE', 'TERRENO', 'FEDERAL','ANTECEDENTE', 'PLANO',
 'CANCELACIONES','DPTO','MINISTERIO','HACIENDA','SIGUE','REGISTRO','PROVINCIA','RESTRICCIONES',
@@ -81,3 +86,12 @@ for par in lista:
         'texto' : texto1
 
     })
+
+
+file_destination = '/Users/User/proyectos/digitalizacion_matriculas/static'
+ 
+get_files = os.listdir(path)
+ 
+for g in get_files:
+    if g.endswith('pdf'):
+        shutil.move(path + '/' + g, file_destination)

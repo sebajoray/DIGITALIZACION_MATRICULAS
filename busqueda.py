@@ -43,9 +43,9 @@ def matricula():
   return render_template("matriculas.html", result=lista, cadena=cadena)
 
 @app.route("/visor", methods=["POST"])
-def pdf():
+def visor():
   cadena = request.form.get("path") 
-  return render_template("visor.html", path=path)
+  return render_template("visor.html", path="762 (029).pdf")
 
 if __name__ == "__main__":
     print("Server running in port %s"%(PORT))

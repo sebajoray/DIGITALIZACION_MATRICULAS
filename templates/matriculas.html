@@ -19,10 +19,11 @@
         <ul>
     {% for path in result %}
     <li>
-        <form action="{{ url_for('pdf')}}" method="post">
-            <h2><input type="button" name="path" value="{{path}}"></input></h2>
+        <form action="{{ url_for('visor')}}" method="post">
+            <h2><input type="button" name="path" value="{{path}}">{{path}}</input>
+                <button name="path" value="{{path}}.pdf">Ver</button> </h2>
             </form>
-    <!--a id="RS" href="{{ url_for('pdf', path=path)}}">   {{path}}</a-->
+
     <a id="RS" href="javascript:" onclick="changeImg('c:{{path}}.pdf')">
 
         {{path}}
