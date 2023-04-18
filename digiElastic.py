@@ -50,7 +50,7 @@ for par in lista:
     
  #   print(imagenes)
     preprocess = "thresh"
-    fichero = par[0] + "/" + par[1]
+    fichero = par[0] + "\\" + par[1]
     print('archivo: ', fichero)
 
     img = io.imread(fichero)

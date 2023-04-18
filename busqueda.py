@@ -28,6 +28,7 @@ def matricula():
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
     print ("ruta::")
+    item = item.replace("\\","/" )
     print(item)
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
@@ -40,6 +41,11 @@ def matricula():
         lista.append(item)
 
   return render_template("matriculas.html", result=lista, cadena=cadena)
+
+@app.route("/verPdf")
+def pdf():
+  cadena = request.form.get("path") 
+  return render_template("visor.html", path=path)
 
 if __name__ == "__main__":
     print("Server running in port %s"%(PORT))

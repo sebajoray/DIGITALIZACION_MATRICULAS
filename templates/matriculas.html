@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<! DOCTYPE html>
+<script type="text/javascript">
+    function changeImg(image){
+      var imghol = document.getElementById("imageHolder");
+      alert(image);
+      imghol.src = "https://docs.google.com/gview?url="+image;
+      imghol.src = image;
+    }
+</script>
 <body>
     <h1 style='color:red'>Cadena a buscar:</h1>
     <form action="{{ url_for('matricula')}}" method="post">
@@ -7,10 +15,22 @@
     </form>
     <br>
     <h1 style='color:rgb(189, 24, 24)'>Resultados para:{{cadena}}</h1>
+    <div class="vertical_menu">
+        <ul>
     {% for path in result %}
-    <br>
-    <a href="c:{{path}}.pdf">{{path}}
-    <!--image scr="{{url_for('static', filename = path)}}" alt="{{path}}">
-    </image>--></a>
+    <li>
+        <form action="{{ url_for('pdf')}}" method="post">
+            <h2><input type="button" name="path" value="{{path}}"></input></h2>
+            </form>
+    <!--a id="RS" href="{{ url_for('pdf', path=path)}}">   {{path}}</a-->
+    <a id="RS" href="javascript:" onclick="changeImg('c:{{path}}.pdf')">
+
+        {{path}}
+    </a>
+    </li>
     {% endfor %}
+    <div class="imageholder">
+        <embed src="762 (029).pdf" type="application/pdf" id="imageHolder"  width="100%" height="600px"/>
+
+    </div>
 </body>
