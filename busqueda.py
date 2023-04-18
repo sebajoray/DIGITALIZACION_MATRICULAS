@@ -42,7 +42,7 @@ def matricula():
 
   return render_template("matriculas.html", result=lista, cadena=cadena)
 
-@app.route("/verPdf")
+@app.route("/visor", methods=["POST"])
 def pdf():
   cadena = request.form.get("path") 
   return render_template("visor.html", path=path)
