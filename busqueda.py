@@ -28,13 +28,11 @@ def matricula():
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
     print ("ruta::")
-    item = item.replace("\\","/" )
-    print(item)
+    #item = item.replace("\\","/" )
+    item=item.split("\\")[1]
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
-
-
   lista=[]  
   for item in data:
     if item not in lista:
@@ -44,8 +42,9 @@ def matricula():
 
 @app.route("/visor", methods=["POST"])
 def visor():
-  cadena = request.form.get("path") 
-  return render_template("visor.html", path="762 (029).pdf")
+    archivo  = request.form.get("path") 
+    print("cadena:" + archivo)
+    return render_template("visor.html", path=archivo)
 
 if __name__ == "__main__":
     print("Server running in port %s"%(PORT))

@@ -43,7 +43,7 @@ for ruta, directorios, ficheros in os.walk(path):
     	    documento.write(img2pdf.convert(imgs))
         for g in imgs:
             remove(g)
-        
+        imgs=[]
             #img = io.imread("1-1-1-1836-.tif")
 nonombres=['COPROPIEDAD', 'DECRETO', 'LEY','DECRETOLEY','BAHIA', 'LOTE', 'TERRENO', 'FEDERAL','ANTECEDENTE', 'PLANO',
 'CANCELACIONES','DPTO','MINISTERIO','HACIENDA','SIGUE','REGISTRO','PROVINCIA','RESTRICCIONES',
