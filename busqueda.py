@@ -18,9 +18,10 @@ def home():
 @app.route("/matriculas", methods=["POST"])
 def matricula():
   cadena = request.form.get("cadena") 
+  lista=[]   
   result = es.search(
       index='matriculas2',
-      query={'match': {'texto': cadena}}
+      query={'match': {'rubroA': cadena}}
   )
   all_hits =result['hits']['hits']
   data = []
@@ -33,10 +34,28 @@ def matricula():
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
-  lista=[]  
+
   for item in data:
     if item not in lista:
-        lista.append(item)
+        lista[item] = 'rubroA'
+
+  result = es.search(
+    index='matriculas2',
+    query={'match': {'descrip': cadena}}
+  )
+  all_hits =result['hits']['hits']
+  data = []
+
+  for num, doc in enumerate(all_hits):
+    item=doc['_source']['path']
+    print ("ruta::")
+    #item = item.replace("\\","/" )
+    item=item.split("\\")[1]
+    #item=doc['_source']['path']+'/'+doc['_source']['imagen']
+    data.append(item)
+    # print a few spaces between each doc for readability
+  for item in data:
+    lista[item] = lista[item] + 'descrip'  
 
   return render_template("matriculas.html", result=lista, cadena=cadena)
 

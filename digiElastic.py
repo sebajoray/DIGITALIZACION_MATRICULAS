@@ -59,6 +59,9 @@ for par in lista:
     print('archivo: ', fichero)
 
     img = io.imread(fichero)
+
+    rubroA = anteDom = descrip = nroInscri = ""
+    
 #    cv2.imshow('imagen de la ruta', img)
     #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     #if (preprocess == "thresh"):
@@ -76,15 +79,36 @@ for par in lista:
     print("-----------------------------------------------------------")
     texto = texto1.split('Titularidad')
     if len(texto) > 1:
-        texto1=texto[1]
-    print('Texto:',texto1)    
+        #texto1 es el contenido de las columnas
+        rubroA = texto[1]
+    texto = texto[0]
+    catastro = texto.split('Catastro')
+    if len(catastro) > 1:
+        nroInscri = catastro[0]
+        resto = catastro[1]
+    else:
+        resto = catastro[0]
+    antecedente = resto.split('antecedente')
+    if len(antecedente) > 1:
+        if len(rubroA) > 0:
+            anteDom = antecedente[1]
+        else:
+            rubroA = antecedente[1]
+    descrip = antecedente[0]
+
+    print('nroInscri:', nroInscri)
+    print('Descripción:', descrip)
+    print('anteDom:', anteDom)
+    print('RubroA:', rubroA)
     es.index(
         index='matriculas2',
         document={
         'path': par[0],
         'imagen': par[1],
-        'texto' : texto1
-
+        'nroInscri' : nroInscri,
+        'anteDom': anteDom,
+        'rubroA' : rubroA,
+        'descrip' : descrip
     })
 
 
