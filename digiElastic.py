@@ -10,6 +10,7 @@ from skimage import io
 import shutil
 import aspose.words as aw
 from PIL import Image
+import re
 
 
 es = Elasticsearch('http://localhost:9200', basic_auth=('seba', 'gemin8'), verify_certs=False)
@@ -77,29 +78,40 @@ for par in lista:
     # limpio el codigo de caracteres que no corresponden
     texto1 = pytesseract.image_to_string(img, lang='font_name', config=f'--psm 6 --oem 1')
     print("-----------------------------------------------------------")
-    texto = texto1.split('Titularidad')
+    def custom_split(sepr_list, str_to_split):
+        # create regular expression dynamically
+        regular_exp = '|'.join(map(re.escape, sepr_list))
+        return re.split(regular_exp, str_to_split)
+    separadores = ["Titularidad","TITULARIDAD","Gravámenes", "GRAVAMENES", "GRAVÁMENES",
+                "Interdicciones","INTERDICCIONES","CANCELACIONES","Cancelaciones",
+                "Restricciones","RESTRICCIONES"]
+    catastro = ["Catastro", "CATASTRO"]
+    antecedentes = ["antecedentes", "Antecedentes","ANTECEDENTES", "DOMINIALES", "dominiales", "Dominiales"]
+
+    texto = custom_split(separadores, texto1)
     if len(texto) > 1:
         #texto1 es el contenido de las columnas
-        rubroA = texto[1]
+        print("*********Encontro rubro A:")
+        descrip=texto[0]
+    rubroA = texto[-1]
+
     texto = texto[0]
-    catastro = texto.split('Catastro')
+    catastro = custom_split(catastro,texto)
     if len(catastro) > 1:
-        nroInscri = catastro[0]
-        resto = catastro[1]
+        print("Encontro CATASTRO ---------------------------------")
+        nroInscri = catastro[0]     
+        texto = catastro[1]
     else:
-        resto = catastro[0]
-    antecedente = resto.split('antecedente')
+        print(catastro[0])
+    antecedente = custom_split(antecedentes, texto)
     if len(antecedente) > 1:
         if len(rubroA) > 0:
             anteDom = antecedente[1]
-        else:
-            rubroA = antecedente[1]
-    descrip = antecedente[0]
 
     print('nroInscri:', nroInscri)
-    print('Descripción:', descrip)
+    #print('Descripción:', descrip)
     print('anteDom:', anteDom)
-    print('RubroA:', rubroA)
+    #print('RubroA:', rubroA)
     es.index(
         index='matriculas2',
         document={
