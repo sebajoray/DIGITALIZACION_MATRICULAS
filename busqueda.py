@@ -18,9 +18,10 @@ def home():
 @app.route("/matriculas", methods=["POST"])
 def matricula():
   cadena = request.form.get("cadena") 
-  lista=[]   
+  lista={}
+
   result = es.search(
-      index='matriculas2',
+      index='matriculas3',
       query={'match': {'rubroA': cadena}}
   )
   all_hits =result['hits']['hits']
@@ -31,6 +32,7 @@ def matricula():
     print ("ruta::")
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
+    item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
@@ -38,9 +40,57 @@ def matricula():
   for item in data:
     if item not in lista:
         lista[item] = 'rubroA'
+    else:
+        lista[item] = lista[item] + 'rubroA'     
 
   result = es.search(
-    index='matriculas2',
+      index='matriculas3',
+      query={'match': {'nroInscri': cadena}}
+  )
+  all_hits =result['hits']['hits']
+  data = []
+
+  for num, doc in enumerate(all_hits):
+    item=doc['_source']['path']
+    print ("ruta::")
+    #item = item.replace("\\","/" )
+    item=item.split("\\")[1]
+    item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
+    #item=doc['_source']['path']+'/'+doc['_source']['imagen']
+    data.append(item)
+    # print a few spaces between each doc for readability
+
+  for item in data:
+    if item not in lista:
+        lista[item] = 'nroInscri'
+    else:
+        lista[item] = lista[item] + 'nroInscri' 
+
+  result = es.search(
+      index='matriculas3',
+      query={'match': {'anteDom': cadena}}
+  )
+  all_hits =result['hits']['hits']
+  data = []
+
+  for num, doc in enumerate(all_hits):
+    item=doc['_source']['path']
+    print ("ruta::")
+    #item = item.replace("\\","/" )
+    item=item.split("\\")[1]
+    item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
+    #item=doc['_source']['path']+'/'+doc['_source']['imagen']
+    data.append(item)
+    # print a few spaces between each doc for readability
+
+  for item in data:
+    if item not in lista:
+        lista[item] = 'anteDom'
+    else:
+        lista[item] = lista[item] + 'anteDom' 
+
+  result = es.search(
+    index='matriculas3',
     query={'match': {'descrip': cadena}}
   )
   all_hits =result['hits']['hits']
@@ -51,11 +101,18 @@ def matricula():
     print ("ruta::")
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
+    item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
   for item in data:
-    lista[item] = lista[item] + 'descrip'  
+    print(item)
+    if item not in lista:
+        lista[item] = 'descrip'
+        print("lista de item:", lista[item])
+    else:
+        lista[item] = lista[item] + 'descrip'     
+        print("lista de item:", lista[item])    
 
   return render_template("matriculas.html", result=lista, cadena=cadena)
 

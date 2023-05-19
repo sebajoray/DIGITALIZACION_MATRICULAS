@@ -15,16 +15,42 @@
     </form>
     <br>
     <h1 style='color:rgb(189, 24, 24)'>Resultados para:{{cadena}}</h1>
-    <div class="vertical_menu">
-        <ul>
-    {% for path in result %}
-    <li>
+
+    <table style="border: 1px solid black; border-collapse: collapse; font-weight: bold;" >
+        <tr>
+            <td  style="border: 1px solid black; padding: 10px;">Matrícula</td>
+            <td style="border: 1px solid black; padding: 10px;">Nro Inscrip</td>
+            <td style="border: 1px solid black; padding: 10px;">Descripción</td>
+            <td style="border: 1px solid black; padding: 10px;">Antecedente</td>
+            <td style="border: 1px solid black; padding: 10px;">Titularidad</td>
+            <td style="border: 1px solid black; padding: 10px;"></td>
+        </tr>
+        <tr>
+
+            
+    {% for path, valores in result.items() %}
+
+    
         <form action="{{ url_for('visor')}}" method="post" target="_blank">
-            {{path}}
-            <input type="hidden"  name="path" value="{{path}}.pdf" />
+        <td align="center" style="border: 1px solid black; padding: 10px;">     {{path}}</td>
+        <td align="center" style="border: 1px solid black; padding: 10px;">    {% if 'nroInscri' in valores %}
+            ✔ 
+            {% endif %}</td>
+        <td align="center" style="border: 1px solid black; padding: 10px;">  {% if 'descrip' in valores %}
+            ✔ 
+            {% endif %}</td> 
+        <td align="center" style="border: 1px solid black; padding: 10px;">    {% if 'anteDom' in valores %}
+            ✔ 
+            {% endif %}</td>
+        <td align="center" style="border: 1px solid black; padding: 10px;">   {% if 'rubroA' in valores %}
+                    ✔  
+            {% endif %}</td> 
+        <td>   <input type="hidden"  name="path" value="{{path}}.pdf" />
                 <button>Ver</button>
-            </form>
-    </li>
+            </form></td> 
+ 
+        </tr>
     {% endfor %}
 
+    </table>
 </body>

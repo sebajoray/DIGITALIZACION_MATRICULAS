@@ -40,8 +40,10 @@ for ruta, directorios, ficheros in os.walk(path):
     print('ficheros:', ficheros)
     if lista:
 #        doc.save(ruta+".pdf")
-        with open(ruta+".pdf", "wb") as documento:
-    	    documento.write(img2pdf.convert(imgs))
+        nombrePdf = ruta.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
+        if not os.path.isfile(nombrePdf+".pdf"):
+            with open(nombrePdf+".pdf", "wb") as documento:
+    	        documento.write(img2pdf.convert(imgs))
         for g in imgs:
             remove(g)
         imgs=[]
@@ -91,7 +93,6 @@ for par in lista:
     texto = custom_split(separadores, texto1)
     if len(texto) > 1:
         #texto1 es el contenido de las columnas
-        print("*********Encontro rubro A:")
         descrip=texto[0]
     rubroA = texto[-1]
 
@@ -108,12 +109,9 @@ for par in lista:
         if len(rubroA) > 0:
             anteDom = antecedente[1]
 
-    print('nroInscri:', nroInscri)
-    #print('Descripción:', descrip)
-    print('anteDom:', anteDom)
-    #print('RubroA:', rubroA)
+    print("*********descrip", descrip)
     es.index(
-        index='matriculas2',
+        index='matriculas3',
         document={
         'path': par[0],
         'imagen': par[1],
@@ -129,5 +127,5 @@ file_destination = '/Users/User/proyectos/digitalizacion_matriculas/static'
 get_files = os.listdir(path)
  
 for g in get_files:
-    if g.endswith('pdf'):
+    if g.endswith('pdf') and not Path(file_destination + '/' + g).is_file():
         shutil.move(path + '/' + g, file_destination)
