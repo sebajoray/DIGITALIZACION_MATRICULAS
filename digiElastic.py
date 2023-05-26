@@ -48,6 +48,15 @@ for ruta, directorios, ficheros in os.walk(path):
             remove(g)
         imgs=[]
             #img = io.imread("1-1-1-1836-.tif")
+
+file_destination = '/Users/User/proyectos/digitalizacion_matriculas/static'
+ 
+get_files = os.listdir(path)
+ 
+for g in get_files:
+    if g.endswith('pdf') and not Path(file_destination + '/' + g).is_file():
+        shutil.move(path + '/' + g, file_destination)
+
 nonombres=['COPROPIEDAD', 'DECRETO', 'LEY','DECRETOLEY','BAHIA', 'LOTE', 'TERRENO', 'FEDERAL','ANTECEDENTE', 'PLANO',
 'CANCELACIONES','DPTO','MINISTERIO','HACIENDA','SIGUE','REGISTRO','PROVINCIA','RESTRICCIONES',
 'EDIFICADO','UBICADO','CIUDAD','CALLE','APROBADO','SOBRE','DOMINIO','INTERDICCIONES','CANCELACIONES',
@@ -78,15 +87,16 @@ for par in lista:
     #imgtext = Image.open(filename)
 
     # limpio el codigo de caracteres que no corresponden
-    texto1 = pytesseract.image_to_string(img, lang='font_name', config=f'--psm 6 --oem 1')
+    texto1 = pytesseract.image_to_string(img, lang='spa', config=f'--psm 6 --oem 1')
     print("-----------------------------------------------------------")
+    print(texto1)
     def custom_split(sepr_list, str_to_split):
         # create regular expression dynamically
         regular_exp = '|'.join(map(re.escape, sepr_list))
         return re.split(regular_exp, str_to_split)
     separadores = ["Titularidad","TITULARIDAD","Gravámenes", "GRAVAMENES", "GRAVÁMENES",
                 "Interdicciones","INTERDICCIONES","CANCELACIONES","Cancelaciones",
-                "Restricciones","RESTRICCIONES"]
+                "Restricciones","RESTRICCIONES","Certificaciones","CERTIFICACIONES"]
     catastro = ["Catastro", "CATASTRO"]
     antecedentes = ["antecedentes", "Antecedentes","ANTECEDENTES", "DOMINIALES", "dominiales", "Dominiales"]
 
@@ -122,10 +132,4 @@ for par in lista:
     })
 
 
-file_destination = '/Users/User/proyectos/digitalizacion_matriculas/static'
- 
-get_files = os.listdir(path)
- 
-for g in get_files:
-    if g.endswith('pdf') and not Path(file_destination + '/' + g).is_file():
-        shutil.move(path + '/' + g, file_destination)
+
