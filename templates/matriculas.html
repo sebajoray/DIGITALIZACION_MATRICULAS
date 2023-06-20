@@ -2,26 +2,35 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>    <h1 style='color:red'>Cadena a buscar:</h1>
+<body class="bg-dark">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>    
+    <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+    <h1 style='color:rgb(189, 37, 23)'>Buscar</h1></div><br>
     <form action="{{ url_for('matricula')}}" method="post">
-    <h2><input type="texto" name="cadena"></input>
-        <button>Enviar</button> </h2>
+    <input type="texto" name="cadena"></input>
+
+        <button class="btn btn-outline-success me-2" type="button">Enviar</button>
+    
     </form>
-    <br>
-    <h1 style='color:rgb(189, 24, 24)'>Resultados para:{{cadena}}</h1>
+    </nav>
 
-    <table style="border: 1px solid black; border-collapse: collapse; font-weight: bold;" >
+    <nav class="navbar bg-dark" data-bs-theme="dark">
+        <div class="btn btn-outline-success me-2">
+            {{cadena}}</div>
+        <br>
+    <table <table class="table-dark" style="border: 1px solid black; border-collapse: collapse; font-weight: bold;" >
         <tr>
-            <td  style="border: 1px solid black; padding: 10px;">Matrícula</td>
-            <td style="border: 1px solid black; padding: 10px;">Nro Inscrip</td>
-            <td style="border: 1px solid black; padding: 10px;">Descripción</td>
-            <td style="border: 1px solid black; padding: 10px;">Antecedente</td>
-            <td style="border: 1px solid black; padding: 10px;">Titularidad</td>
-            <td style="border: 1px solid black; padding: 10px;"></td>
+            <td  class="table-dark" style="border: 1px solid black; padding: 10px;">Matrícula</td>
+            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Nro Inscrip</td>
+            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Descripción</td>
+            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Antecedente</td>
+            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Titularidad</td>
+            <td class="table-dark" style="border: 1px solid black; padding: 10px;"></td>
         </tr>
+    </nav><nav class="table table-dark table-success table-striped" data-bs-theme="dark">
         <tr>
-
+        
             
     {% for path, valores in result.items() %}
 
@@ -41,11 +50,12 @@
                     ✔  
             {% endif %}</td> 
         <td>   <input type="hidden"  name="path" value="{{path}}.pdf" />
-                <button>Ver</button>
+                <button class="btn btn-outline-success me-2">Ver</button>
             </form></td> 
  
         </tr>
     {% endfor %}
 
     </table>
+    </nav>
 </body>
