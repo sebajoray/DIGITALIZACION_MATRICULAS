@@ -75,19 +75,20 @@ for par in lista:
     rubroA = anteDom = descrip = nroInscri = ""
     
 #    cv2.imshow('imagen de la ruta', img)
-    #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    #if (preprocess == "thresh"):
-    #    gray = cv2.threshold(
-    #        gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-    #elif (preprocess == "blur"):
-    #    gray = cv2.medianBlur(gray, 3)
-    #filename = "{}.png".format(os.getpid())
+    
+    gray = cv2.medianBlur(img,5)
+    if (preprocess == "thresh"):
+       gray = cv2.threshold(
+            gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+    elif (preprocess == "blur"):
+        gray = cv2.medianBlur(gray, 3)
+    filename = "{}.png".format(os.getpid())
     #cv2.imwrite(filename, gray)
 
     #imgtext = Image.open(filename)
 
     # limpio el codigo de caracteres que no corresponden
-    texto1 = pytesseract.image_to_string(img, lang='spa', config=f'--psm 6 --oem 1')
+    texto1 = pytesseract.image_to_string(gray, lang='spa', config=f'--psm 6 --oem 2')
     print("-----------------------------------------------------------")
     print(texto1)
     def custom_split(sepr_list, str_to_split):

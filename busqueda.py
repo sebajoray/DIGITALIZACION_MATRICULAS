@@ -29,7 +29,7 @@ def matricula():
 
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
-    print ("ruta::")
+    print ("-----------------rubroA:", item, doc['_score'])
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
     item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
@@ -52,7 +52,7 @@ def matricula():
 
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
-    print ("ruta::")
+
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
     item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
@@ -98,7 +98,7 @@ def matricula():
 
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
-    print ("ruta::")
+    print ("-----------------descrip:", doc['_score'])
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
     item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
