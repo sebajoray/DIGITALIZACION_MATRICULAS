@@ -4,6 +4,7 @@ from flask import json
 import json
 from elasticsearch import Elasticsearch
 from flask import Flask, render_template, make_response, jsonify, request
+import copy
 
 app = Flask(__name__)
 
@@ -19,29 +20,29 @@ def home():
 def matricula():
   cadena = request.form.get("cadena") 
   lista={}
-
+  print("++++++++++++++++++++++++++++++++", cadena)
   result = es.search(
       index='matriculas3',
       query={'match': {'rubroA': cadena}}
   )
   all_hits =result['hits']['hits']
   data = []
-
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
-    print ("-----------------rubroA:", item, doc['_score'])
+
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
     item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
-
+    print("-----------------rubroA:", item, doc['_score'])
+    lista[item] = ('rubroA', copy.deepcopy(doc['_score']))
   for item in data:
     if item not in lista:
-        lista[item] = 'rubroA'
-    else:
-        lista[item] = lista[item] + 'rubroA'     
+      lista[item] = ('rubroA', copy.deepcopy(doc['_score']))
+      print('helloooooo', item, doc['_score'])
+ 
 
   result = es.search(
       index='matriculas3',
@@ -59,12 +60,8 @@ def matricula():
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
+    lista[item] = ('nroInscri', copy.deepcopy(doc['_score']))
 
-  for item in data:
-    if item not in lista:
-        lista[item] = 'nroInscri'
-    else:
-        lista[item] = lista[item] + 'nroInscri' 
 
   result = es.search(
       index='matriculas3',
@@ -85,9 +82,9 @@ def matricula():
 
   for item in data:
     if item not in lista:
-        lista[item] = 'anteDom'
+        lista[item] = ('anteDom', doc['_score'])
     else:
-        lista[item] = lista[item] + 'anteDom' 
+        lista[item] = lista[item] + ('anteDom', doc['_score']) 
 
   result = es.search(
     index='matriculas3',
@@ -98,7 +95,7 @@ def matricula():
 
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
-    print ("-----------------descrip:", doc['_score'])
+    print ("-----------------descrip:", item, doc['_score'])
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
     item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
@@ -108,10 +105,10 @@ def matricula():
   for item in data:
     print(item)
     if item not in lista:
-        lista[item] = 'descrip'
+        lista[item] = ('descrip', doc['_score'])
         print("lista de item:", lista[item])
     else:
-        lista[item] = lista[item] + 'descrip'     
+        lista[item] = lista[item] + ('descrip', doc['_score'])   
         print("lista de item:", lista[item])    
 
   return render_template("matriculas.html", result=lista, cadena=cadena)
