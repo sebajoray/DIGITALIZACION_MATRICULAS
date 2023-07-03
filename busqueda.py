@@ -61,7 +61,11 @@ def matricula():
     data.append(item)
     # print a few spaces between each doc for readability
     lista[item] = ('nroInscri', copy.deepcopy(doc['_score']))
-
+  for item in data:
+    if item not in lista:
+        lista[item] = ('nroInscri', doc['_score'])
+    else:
+        lista[item] = lista[item] + ('nroInscri', doc['_score']) 
 
   result = es.search(
       index='matriculas3',
