@@ -37,8 +37,6 @@ def matricula():
     data.append(item)
     # print a few spaces between each doc for readability
     print("-----------------rubroA:", item, doc['_score'])
-    lista[item] = ('rubroA', copy.deepcopy(doc['_score']))
-  for item in data:
     if item not in lista:
       lista[item] = ('rubroA', copy.deepcopy(doc['_score']))
       print('helloooooo', item, doc['_score'])
@@ -60,7 +58,6 @@ def matricula():
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
-    lista[item] = ('nroInscri', copy.deepcopy(doc['_score']))
   for item in data:
     if item not in lista:
         lista[item] = ('nroInscri', doc['_score'])

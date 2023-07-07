@@ -2,60 +2,76 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body class="bg-dark">
+<body class="--bs-info">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>    
-    <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
-    <div class="container-fluid">
-    <h1 style='color:rgb(189, 37, 23)'>Buscar</h1></div><br>
-    <form action="{{ url_for('matricula')}}" method="post">
-    <input type="texto" name="cadena"></input>
+<!-- #main-navigation -->
+<div id="main-navigation" class="">
+	<div class="container">
+		<a class="navbar-brand" href="https://www.gba.gob.ar/"><img
+				src="https://gba.gob.ar/imagenes/logo_gba_footer_blanco.svg" alt="logo buenos aires provincia"     style="width: 240px !important;height: auto !important;padding-left: unset !important;margin-left: 0px;"></a>
 
-        <button class="btn btn-outline-success me-2">Enviar</button>
-    
-    </form>
+		<!-- #main-navigation-inside -->
+	</div>
+</div>
+<!-- EOF: #main-navigation -->
+
+    <nav class="navbar bg-body-tertiary" data-bs-theme="--bs-info">
+    <div class="container-fluid" >
+    <form action="{{ url_for('matricula')}}" method="post" class="d-flex align-items-center">
+        <div class="input-group">
+          <span class="input-group-text">Buscar</span>
+          <input type="text" name="cadena" class="form-control"></input>
+        </div>
+        <button class="btn btn-outline-success ms-2">Enviar</button>
+      </form>
+    </div>
     </nav>
 
-    <nav class="navbar bg-dark" data-bs-theme="dark">
-        <div class="btn btn-outline-success me-2">
-            {{cadena}}</div>
-        <br>
-    <table <table class="table-dark" style="border: 1px solid black; border-collapse: collapse; font-weight: bold;" >
-        <tr>
-            <td  class="table-dark" style="border: 1px solid black; padding: 10px;">Matrícula</td>
-            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Nro Inscrip</td>
-            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Descripción</td>
-            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Antecedente</td>
-            <td class="table-dark" style="border: 1px solid black; padding: 10px;">Titularidad</td>
-            <td class="table-dark" style="border: 1px solid black; padding: 10px;"></td>
-        </tr>
-    </nav><nav class="table table-dark table-success table-striped" data-bs-theme="dark">
-        <tr>
-        
-            
+
+    <br>
+
+<h4 style="font-weight: bold; color: rgb(23, 164, 189); background-color: #f8f9fa; padding: 10px;">{{cadena}}</h4>
+
+<table class="table table-striped" style="border-collapse: collapse; font-weight: bold;">
+    <tr style="background-color: #f2f2f2;">
+        <th class="text-center" style="padding: 10px;">Matrícula</th>
+        <th class="text-center" style="padding: 10px;">Nro Inscrip</th>
+        <th class="text-center" style="padding: 10px;">Descripción</th>
+        <th class="text-center" style="padding: 10px;">Antecedente</th>
+        <th class="text-center" style="padding: 10px;">Titularidad</th>
+        <th class="text-center" style="padding: 10px;"></th>
+    </tr>
+
     {% for path, valores in result.items() %}
-
-    
+    <tr style="background-color: #f8f8f8;">
         <form action="{{ url_for('visor')}}" method="post" target="_blank">
-        <td align="center" style="border: 1px solid black; padding: 10px;">     {{path}}</td>
-        <td align="center" style="border: 1px solid black; padding: 10px;">    {% if 'nroInscri' in valores %}
-            {{valores[-1]}}
-            {% endif %}</td>
-        <td align="center" style="border: 1px solid black; padding: 10px;">  {% if 'descrip' in valores %}
-            {{valores[-1]}}
-            {% endif %}</td> 
-        <td align="center" style="border: 1px solid black; padding: 10px;">    {% if 'anteDom' in valores %}
-            {{valores[-1]}}
-            {% endif %}</td>
-        <td align="center" style="border: 1px solid black; padding: 10px;">   {% if 'rubroA' in valores %}
+            <td align="center" style="padding: 10px;">{{path}}</td>
+            <td align="center" style="padding: 10px;">
+                {% if 'nroInscri' in valores %}
+                    {{valores[-1]}}
+                {% endif %}
+            </td>
+            <td align="center" style="padding: 10px;">
+                {% if 'descrip' in valores %}
+                    {{valores[-1]}}
+                {% endif %}
+            </td>
+            <td align="center" style="padding: 10px;">
+                {% if 'anteDom' in valores %}
+                    {{valores[-1]}}
+                {% endif %}
+            </td>
+            <td align="center" style="padding: 10px;">
+                {% if 'rubroA' in valores %}
                     {{valores[1]}}
-            {% endif %}</td> 
-        <td>   <input type="hidden"  name="path" value="{{path}}.pdf" />
-                <button class="btn btn-outline-success me-2">Ver</button>
-            </form></td> 
- 
+                {% endif %}
+            </td>
+            <td>
+                <input type="hidden" name="path" value="{{path}}.pdf">
+                <button class="btn btn-outline-success">Ver</button>
+            </td>
+            </form>
         </tr>
-    {% endfor %}
-
+        {% endfor %}
     </table>
-    </nav>
 </body>
