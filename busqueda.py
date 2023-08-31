@@ -58,11 +58,11 @@ def matricula():
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
-  for item in data:
     if item not in lista:
         lista[item] = ('nroInscri', doc['_score'])
     else:
-        lista[item] = lista[item] + ('nroInscri', doc['_score']) 
+        if 'nroInscri' not in lista[item]:
+          lista[item] = lista[item] + ('nroInscri', doc['_score']) 
 
   result = es.search(
       index='matriculas3',
@@ -81,11 +81,11 @@ def matricula():
     data.append(item)
     # print a few spaces between each doc for readability
 
-  for item in data:
     if item not in lista:
         lista[item] = ('anteDom', doc['_score'])
     else:
-        lista[item] = lista[item] + ('anteDom', doc['_score']) 
+        if 'anteDom' not in lista[item]:
+          lista[item] = lista[item] + ('anteDom', doc['_score']) 
 
   result = es.search(
     index='matriculas3',
@@ -103,14 +103,11 @@ def matricula():
     #item=doc['_source']['path']+'/'+doc['_source']['imagen']
     data.append(item)
     # print a few spaces between each doc for readability
-  for item in data:
-    print(item)
     if item not in lista:
         lista[item] = ('descrip', doc['_score'])
-        print("lista de item:", lista[item])
     else:
-        lista[item] = lista[item] + ('descrip', doc['_score'])   
-        print("lista de item:", lista[item])    
+        if 'descrip' not in lista[item]:
+          lista[item] = lista[item] + ('descrip', doc['_score']) 
 
   return render_template("matriculas.html", result=lista, cadena=cadena)
 
