@@ -14,7 +14,7 @@ import cv2
 import numpy as np
   
 # path 
-path = r'1-1-1-1836-.tif'
+path = r'1-1-1-1838-.tif'
   
 # Reading an image in default mode 
 image = cv2.imread(path) 

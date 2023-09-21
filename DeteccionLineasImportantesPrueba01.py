@@ -2,7 +2,7 @@
 """
 Created on Fri Jun 25 23:25:59 2021
 
-@author: cesar
+
 """
 
 
@@ -116,7 +116,7 @@ def GetLinesFromImage(image, minLineWidth, minLineHeight ,maxLineGap, charAvgHei
 
 # path 
 #path = r'1-1-1-1836-.tif'
-path = r'result.png'
+path = r'1-1-1-1838-.tif'
 
  
 
