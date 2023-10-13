@@ -9,6 +9,8 @@ Created on Fri Jun 25 23:25:59 2021
   
 # importing cv2 
 import cv2
+
+import nltk
   
 # importing numpy 
 import numpy as np
@@ -50,3 +52,9 @@ imageOut = 255-imageOut
 cv2.imwrite(path+'-V.png', imageV)
 cv2.imwrite(path+'-H.png', imageH)
 cv2.imwrite(path+'-O.png', imageOut)
+
+
+texto="La casa de Arturo"
+tokenized=nltk.word_tokenize(texto)
+
+print(nltk.pos_tag(tokenized))

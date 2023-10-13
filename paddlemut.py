@@ -6,7 +6,7 @@ import os # folder directory navigation
 # Setup model
 ocr_model = PaddleOCR(lang='en')
 
-img_path = os.path.join('.', '1-1-1-1838-.tif')
+img_path = os.path.join('imagenes/1836 (015)/1-1-1-1836-.jpeg')
 
 # Run the ocr method on the ocr model
 result = ocr_model.ocr(img_path)

@@ -16,6 +16,10 @@ cadena='cadena'
 def home():
    return render_template("index.php")
 
+@app.route("/login")
+def login():
+  return render_template("login.html")
+
 @app.route("/matriculas", methods=["POST"])
 def matricula():
   cadena = request.form.get("cadena") 

