@@ -2,6 +2,29 @@
 <head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" media="print" href='https://servicios.rpba.gob.ar/style/comun/styleServiciosWeb2011Print.min.css' />
 <link rel="stylesheet" type="text/css" media="screen" href='https://servicios.rpba.gob.ar/style/comun/SiteMesh.php?decorator=identity' />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<style>
+    /* Estilos para el icono de ojo */
+    i.far.fa-eye {
+        font-size: 20px; /* Tamaño del icono */
+        margin-right: 5px; /* Espacio entre el icono y el botón */
+        color: #007bff; /* Color del icono (ajusta según tu preferencia) */
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('button[name^="ver_button_"]');
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                const buttonIndex = button.name.split('_')[2];
+                const icons = document.querySelectorAll(`i.far.fa-eye`);
+                icons[buttonIndex - 1].style.display = 'inline-block'; // Mostrar el icono
+            });
+        });
+    });
+</script>
 <style type="text/css">
 #toolbar1{background-color: rgba(51,51,51,0.52);color:#FFF;height:45px;}
 #toolbar1 ul{margin:0;padding: 0;list-style: none;}
@@ -60,7 +83,7 @@
 
 <table class="table table-striped" style="border-collapse: collapse; font-weight: bold;">
     <tr style="background-color: #f2f2f2;">
-        <th class="text-center" style="padding: 10px;">Matrícula</th>
+        <th class="text-center" style="padding: 10px;">Matrículaaa</th>
         <th class="text-center" style="padding: 10px;">Nro Inscrip</th>
         <th class="text-center" style="padding: 10px;">Descripción</th>
         <th class="text-center" style="padding: 10px;">Antecedente</th>
@@ -94,8 +117,13 @@
             </td>
             <td>
                 <input type="hidden" name="path" value="{{path}}.pdf">
-                <button class="btn btn-outline-success">Ver</button>
-            </td>
+                {% if not valores.visto %}
+                    <i class="far fa-eye" style="display: none;">no vistoo</i>
+                {% else %}
+                    <i class="far fa-eye">yes</i>
+                {% endif %}
+                <button class="btn btn-outline-success" name="ver_button_{{loop.index}}">Ver</button>
+             </td>
             </form>
         </tr>
         {% endfor %}
