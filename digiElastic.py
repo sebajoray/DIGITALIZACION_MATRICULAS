@@ -88,7 +88,7 @@ for par in lista:
     #imgtext = Image.open(filename)
 
     # limpio el codigo de caracteres que no corresponden
-    texto1 = pytesseract.image_to_string(gray, lang='spa_old', config=f'--psm 6 --oem 3')
+    texto1 = pytesseract.image_to_string(gray, lang='eng', config=f'--psm 6 --oem 3')
     print("-----------------------------------------------------------")
     print(texto1)
     def custom_split(sepr_list, str_to_split):

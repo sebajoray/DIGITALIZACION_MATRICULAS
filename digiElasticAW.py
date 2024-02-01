@@ -1,5 +1,5 @@
 # Importamos Pytesseract
-import pytesseract
+from paddleocr import PaddleOCR# main OCR dependencies
 import cv2
 import os
 import img2pdf
@@ -58,7 +58,7 @@ for par in lista:
     #imgtext = Image.open(filename)
 
     # limpio el codigo de caracteres que no corresponden
-    texto1 = pytesseract.image_to_string(img, lang='font_name', config=f'--psm 6 --oem 1')
+    texto1 = ocr_model.ocr(img)
     print("-----------------------------------------------------------")
     print(texto1)
     texto = texto1.split('Titularidad')

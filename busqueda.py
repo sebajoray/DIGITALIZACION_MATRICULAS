@@ -5,6 +5,7 @@ import json
 from elasticsearch import Elasticsearch
 from flask import Flask, render_template, make_response, jsonify, request
 import copy
+import datetime
 
 app = Flask(__name__)
 
@@ -113,7 +114,8 @@ def matricula():
         if 'descrip' not in lista[item]:
           lista[item] = lista[item] + ('descrip', doc['_score']) 
 
-  return render_template("matriculas.html", result=lista, cadena=cadena)
+  fecha_actual = datetime.datetime.now()
+  return render_template("matriculas.html", result=lista, cadena=cadena, fecha_actual=fecha_actual)
 
 @app.route("/visor", methods=["POST"])
 def visor():

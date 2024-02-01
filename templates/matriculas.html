@@ -10,7 +10,7 @@
     i.far.fa-eye {
         font-size: 20px; /* Tamaño del icono */
         margin-right: 5px; /* Espacio entre el icono y el botón */
-        color: #007bff; /* Color del icono (ajusta según tu preferencia) */
+        color: #000000; /* Color del icono (ajusta según tu preferencia) */
     }
 </style>
 <script>
@@ -57,7 +57,7 @@
 		</td>
 		<TD width="26%" style="text-align: right;">
 			<FONT color="#fdfdfd" size="2" face="Tahoma">
-				Martes, 3 de Octubre de 2023								
+				<p>{{ fecha_actual.strftime('%d de %B de %Y') }}</p>								
 			</font>
 		</td>
 	</tr>
@@ -83,7 +83,7 @@
 
 <table class="table table-striped" style="border-collapse: collapse; font-weight: bold;">
     <tr style="background-color: #f2f2f2;">
-        <th class="text-center" style="padding: 10px;">Matrículaaa</th>
+        <th class="text-center" style="padding: 10px;">Matrícula</th>
         <th class="text-center" style="padding: 10px;">Nro Inscrip</th>
         <th class="text-center" style="padding: 10px;">Descripción</th>
         <th class="text-center" style="padding: 10px;">Antecedente</th>
@@ -115,13 +115,15 @@
                     {{valores[1]}}
                 {% endif %}
             </td>
-            <td>
+            <td width="30">
                 <input type="hidden" name="path" value="{{path}}.pdf">
                 {% if not valores.visto %}
-                    <i class="far fa-eye" style="display: none;">no vistoo</i>
+                    <i class="far fa-eye" style="display: none;"></i>
                 {% else %}
-                    <i class="far fa-eye">yes</i>
+                    <i class="far fa-eye"></i>
                 {% endif %}
+            </td>
+            <td>
                 <button class="btn btn-outline-success" name="ver_button_{{loop.index}}">Ver</button>
              </td>
             </form>
