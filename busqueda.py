@@ -15,7 +15,8 @@ es = Elasticsearch('http://localhost:9200', basic_auth=('seba', 'gemin8'), verif
 cadena='cadena'
 @app.route("/")
 def home():
-   return render_template("index.php")
+  fecha_actual = datetime.datetime.now()
+  return render_template("index.php", fecha_actual=fecha_actual)
 
 @app.route("/login")
 def login():
