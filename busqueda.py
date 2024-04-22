@@ -35,7 +35,7 @@ def matricula():
   data = []
   for num, doc in enumerate(all_hits):
     item=doc['_source']['path']
-
+    print("doc['_source']['imagen']",doc['_source']['imagen'])
     #item = item.replace("\\","/" )
     item=item.split("\\")[1]
     item=item.replace("-", "_").replace("(", "_").replace(")", "").replace(" ", "")
